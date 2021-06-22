@@ -18,8 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('login','App\Http\Controllers\UserController@login');
+Route::post('usuario','App\Http\Controllers\UserController@crear');
 Route::group(['middleware'=>'auth:api'], function(){
     Route::resource('deuda', 'App\Http\Controllers\DeudaController');
-    Route::post('usuario','App\Http\Controllers\UserController@crear');
     Route::post('logout','App\Http\Controllers\UserController@logout');
 });
