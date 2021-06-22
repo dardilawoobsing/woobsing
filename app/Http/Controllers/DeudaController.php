@@ -39,7 +39,7 @@ class DeudaController extends Controller
     {   
         try{
             $deuda = new Deuda;
-            $deuda -> cedula = md5($request->input('cedula'));
+            $deuda -> cedula = md5($request->input('cedula')).'4874684984687468';
             $deuda -> capital = Crypt::encryptString($request->input('capital'));
             $deuda -> intereses = Crypt::encryptString($request->input('intereses'));
             $deuda -> save();
@@ -60,7 +60,7 @@ class DeudaController extends Controller
     public function show($cedula)
     {
         try{
-            $deuda = Deuda::firstOrFail()->where('cedula',md5($cedula))->get();
+            $deuda = Deuda::firstOrFail()->where('cedula',md5($cedula).'4874684984687468')->get();
             $deuda[0]->cedula = $cedula;
             $deuda[0]->capital = Crypt::decryptString($deuda[0]->capital);
             $deuda[0]->intereses = Crypt::decryptString($deuda[0]->intereses);
